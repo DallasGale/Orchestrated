@@ -3,13 +3,11 @@
 ## **State**
 
 ```javascript
-
-  state = {
-    games: [],
-    cart: [],
-    totalCost: null,
-  }
-
+state = {
+  games: [],
+  cart: [],
+  totalCost: null,
+}
 ```
 
 
@@ -37,14 +35,14 @@ Fetch data from a mock json api in the following shape.
 ```
 ## **Price**
 ```javascript
-  const { games } = this.state
-  const { price } = games
-  
-  const now = price.now
-  const was = price.was 
+const { games } = this.state
+const { price } = games
 
-  // Calculate save variable client side
-  const save = was - now
+const now = price.now
+const was = price.was 
+
+// Calculate save variable client side
+const save = was - now
 ```
 
 ```javascript
