@@ -74,12 +74,12 @@ handleAddToCart = (game) => {
   games.map(game => {
     const { id, title, description, price } = game
     return (
-      <Game key={id}>
+      <div key={id}>
         <h2>{title}</h2>
         <p>{description}</p>
         <span>{price}</span>
         <button onClick={handleAddToCart(...game)}>
-      </Game>
+      </div>
     )
   })
 }
