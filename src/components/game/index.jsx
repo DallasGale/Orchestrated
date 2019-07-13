@@ -4,23 +4,13 @@ import PropTypes from 'prop-types'
 
 import * as colors from '../styles/colors'
 import pxToEm from '../utils/px_to_em'
-import { TypographyHeading2 } from '../styles/typography'
+import { typographyWeightBold, TypographyHeading2 } from '../styles/typography'
 
+import AddToCart from '../ui_elements/add_to_cart'
 import OnSaleBanner from '../ui_elements/on_sale_banner'
 import Layout from '../styled/layout'
 import Divider from '../ui_elements/divider'
 
-const StyledAddToCart = styled.button`
-  background: ${colors.navy};
-  font-size: ${pxToEm(16)};
-  color: white;
-`
-
-const AddToCart = (props) => {
-  const { addToCartOnClick } = props
-  const label = 'Add to cart'
-  return <StyledAddToCart type="button" onClick={addToCartOnClick}>{label}</StyledAddToCart>
-}
 
 const HeroImage = styled.div`
   background-size: cover;
@@ -35,6 +25,21 @@ const StyledCard = styled.article`
   border-radius: ${pxToEm(8)};
   box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.1);
   overflow: hidden;
+`
+
+const StyledPrice = styled.div`
+  font-size: ${pxToEm(18)};
+  ${typographyWeightBold};
+`
+
+const StyledTwoCol = styled.div`
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+`
+
+const StyledDescription = styled.div`
+  height: ${pxToEm(100)};
 `
 
 const Game = (props) => {
@@ -54,14 +59,23 @@ const Game = (props) => {
       </HeroImage>
 
       <Layout>
-        <TypographyHeading2>{title}</TypographyHeading2>
-        <p>{description}</p>
+        <StyledDescription>
+          <TypographyHeading2>{title}</TypographyHeading2>
+          <p>{description}</p>
+        </StyledDescription>
       </Layout>
       <Divider />
       <Layout>
-        <div>{price}</div>
-        <div>{`Was ${was}, save ${save}`}</div>
-        <AddToCart {...props} />
+        <StyledTwoCol>
+          <StyledPrice>{`$${price}`}</StyledPrice>
+          <small className="typography__align--right">{`Was ${was}, save ${save}`}</small>
+        </StyledTwoCol>
+        <StyledTwoCol>
+          <div>
+            <AddToCart {...props} />
+          </div>
+          <small className="typography__align--right">Save to wishlist</small>
+        </StyledTwoCol>
       </Layout>
     </StyledCard>
   )

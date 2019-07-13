@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { lightBlue } from '../styles/colors'
+import pxToEm from '../utils/px_to_em'
 
 const StyledPage = styled.main`
-  align-items: center;
   background: ${lightBlue};
-  display: flex;
+  padding-top: ${pxToEm(120)};
   min-height: 100vh;
 `
 
