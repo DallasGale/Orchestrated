@@ -1,6 +1,3 @@
-// colors.js
-// brand, primary, secondary etc...
-
 export const black = '#000000'
 export const blueGray = '#344951'
 export const lightBlue = '#e3eef1'

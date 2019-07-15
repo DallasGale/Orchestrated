@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RemoveFromCart /> it renders 1`] = `
+<button
+  class="sc-ifAKCX iySagC"
+  type="button"
+>
+  Remove from cart
+</button>
+`;

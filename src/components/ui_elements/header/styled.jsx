@@ -1,14 +1,8 @@
-import React from 'react'
 import styled from 'styled-components'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
-import Layout from '../styled/layout'
-import { typographyWeightBold, TypographyHeading1 } from '../styles/typography'
-import * as colors from '../styles/colors'
-import pxToEm from '../utils/px_to_em'
-
+import { typographyWeightBold } from '../../styles/typography'
+import * as colors from '../../styles/colors'
+import pxToEm from '../../utils/px_to_em'
 
 const StyledHeader = styled.header`
   background: ${colors.blueGray};
@@ -47,23 +41,9 @@ const StyledCount = styled.div`
   ${typographyWeightBold};
 `
 
-const Header = (props) => {
-  const { cart, countExists, title } = props
-  return (
-    <StyledHeader>
-      <StyledGrid>
-        <div>
-          <TypographyHeading1>{title}</TypographyHeading1>
-        </div>
-        <div className="typography__align--right">
-          <div className="header__cart">
-            <StyledFa icon={faShoppingCart} />
-            {countExists && (<StyledCount>{cart}</StyledCount>)}
-          </div>
-        </div>
-      </StyledGrid>
-    </StyledHeader>
-  )
+export {
+  StyledHeader,
+  StyledGrid,
+  StyledFa,
+  StyledCount,
 }
-
-export default Header

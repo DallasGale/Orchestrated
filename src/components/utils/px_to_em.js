@@ -7,4 +7,3 @@ import { rootFontSize } from '../styles/base'
 const pxToEm = pxValue => `${parseFloat((pxValue / rootFontSize).toFixed(5))}em`
 
 export default pxToEm
-

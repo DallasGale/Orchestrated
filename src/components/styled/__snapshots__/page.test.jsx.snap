@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Page /> it renders 1`] = `
+<main
+  class="sc-bwzfXH jSSjEM"
+>
+  <div
+    class="sc-bdVaJa dqmyKm"
+  />
+</main>
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OnSaleBanner /> it renders 1`] = `
+<div
+  class="sc-ifAKCX gnKWoA"
+>
+  <div
+    class="sc-EHOje eBeZJa"
+  >
+    ON SALE!
+  </div>
+</div>
+`;

@@ -1,71 +1,32 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import * as colors from '../styles/colors'
-import pxToEm from '../utils/px_to_em'
-import { typographyWeightBold, TypographyHeading2 } from '../styles/typography'
+import { TypographyHeading2 } from '../styles/typography'
 
 import AddToCart from '../ui_elements/add_to_cart'
 import RemoveFromCart from '../ui_elements/remove_from_cart'
 import OnSaleBanner from '../ui_elements/on_sale_banner'
 import Layout from '../styled/layout'
-import { Card } from '../styled/card'
 import Divider from '../ui_elements/divider'
 
+import {
+  StyledCard,
+  StyledDescription,
+  StyledGameInfo,
+  StyledHero,
+  StyledPrice,
+  StyledTwoCol,
+  StyledWasNow,
+  StyledWishlist,
+} from './styled'
 
-const StyledCard = styled.article`
-  background: ${colors.white};
-  overflow: hidden;
-  margin-bottom: ${pxToEm(20)};
-  ${Card};
-`
-
-const HeroImage = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: ${pxToEm(182)};
-  position: relative;
-`
-
-const StyledDescription = styled.p`
-  font-size: ${pxToEm(14)};
-`
-
-const StyledPrice = styled.div`
-  font-size: ${pxToEm(16)};
-  margin-bottom: ${pxToEm(18)};
-  ${typographyWeightBold};
-`
-
-const StyledTwoCol = styled.div`
-  align-items: center;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-`
-
-const StyledGameInfo = styled.div`
-  height: ${pxToEm(100)};
-`
-
-const StyledWasNow = styled.small`
-  color: ${colors.blueGray}; 
-  font-size: ${pxToEm(11)};
-`
-
-const StyledWishlist = styled.small`
-  color: ${colors.navy}; 
-  font-size: ${pxToEm(11)};
-  ${typographyWeightBold};
-`
+const wishlistLabel = 'Save to wishlist'
 
 const Game = (props) => {
   const {
     addOnClick,
     description,
     isAdded,
-    units,
     hero,
     sale,
     price,
@@ -76,9 +37,9 @@ const Game = (props) => {
   } = props
   return (
     <StyledCard>
-      <HeroImage style={{ backgroundImage: `url('${hero}')` }}>
+      <StyledHero style={{ backgroundImage: `url('${hero}')` }}>
         {sale && <OnSaleBanner />}
-      </HeroImage>
+      </StyledHero>
 
       <Layout>
         <StyledGameInfo>
@@ -86,12 +47,19 @@ const Game = (props) => {
           <StyledDescription>{description}</StyledDescription>
         </StyledGameInfo>
       </Layout>
+
       <Divider />
+
       <Layout>
         <StyledTwoCol>
           <StyledPrice>{`$${price}`}</StyledPrice>
-          <StyledWasNow className="typography__align--right">{`Was $${was}, save $${save}`}</StyledWasNow>
+          <StyledWasNow
+            className="typography__align--right"
+          >
+            {`Was $${was}, save $${save}`}
+          </StyledWasNow>
         </StyledTwoCol>
+
         <StyledTwoCol>
           <div>
             <AddToCart addOnClick={() => addOnClick({
@@ -104,23 +72,26 @@ const Game = (props) => {
               was,
             })}
             />
-            <br />
-            <br />
-            {isAdded && (
-              <RemoveFromCart removeOnClick={() => removeOnClick({
-                description,
-                hero,
-                sale,
-                price,
-                save,
-                title,
-                was,
-              })}
-              />
-            )}
           </div>
-          <StyledWishlist className="typography__align--right">Save to wishlist</StyledWishlist>
+
+          <StyledWishlist
+            className="typography__align--right"
+          >
+            {wishlistLabel}
+          </StyledWishlist>
         </StyledTwoCol>
+        {isAdded && (
+          <RemoveFromCart removeOnClick={() => removeOnClick({
+            description,
+            hero,
+            sale,
+            price,
+            save,
+            title,
+            was,
+          })}
+          />
+        )}
       </Layout>
     </StyledCard>
   )
@@ -136,7 +107,6 @@ Game.propTypes = {
   price: PropTypes.number.isRequired,
   save: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  units: PropTypes.number.isRequired,
   was: PropTypes.number.isRequired,
 }
 

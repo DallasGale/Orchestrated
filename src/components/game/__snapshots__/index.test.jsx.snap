@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Game /> it renders 1`] = `
+<article
+  class="sc-dnqmqq lnBboa"
+>
+  <div
+    class="sc-iwsKbI bFfjpH"
+    style="background-image:url('https://images.unsplash.com/photo-1562819789-fd366076971a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80')"
+  />
+  <div
+    class="sc-bZQynM jTXKpG"
+  >
+    <div
+      class="sc-jTzLTM dWCvHw"
+    >
+      <h2
+        class="sc-bwzfXH czBpvq"
+      >
+        Title
+      </h2>
+      <p
+        class="sc-gZMcBi hKQFRJ"
+      >
+        No description found.
+      </p>
+    </div>
+  </div>
+  <div
+    class="sc-htoDjs gSrElP"
+  />
+  <div
+    class="sc-bZQynM jTXKpG"
+  >
+    <div
+      class="sc-VigVT gfYtQJ"
+    >
+      <div
+        class="sc-gqjmRU cOAnCh"
+      >
+        $0
+      </div>
+      <small
+        class="typography__align--right sc-fjdhpX dlAVlG"
+      >
+        Was $0, save $0
+      </small>
+    </div>
+    <div
+      class="sc-VigVT gfYtQJ"
+    >
+      <div>
+        <button
+          class="sc-ifAKCX ewMubd"
+          type="button"
+        >
+          Add to cart
+        </button>
+        <br />
+        <br />
+      </div>
+      <small
+        class="typography__align--right sc-jzJRlG cvvOEF"
+      >
+        Save to wishlist
+      </small>
+    </div>
+  </div>
+</article>
+`;
