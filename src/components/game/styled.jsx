@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as colors from '../styles/colors'
 import pxToEm from '../utils/px_to_em'
 import { typographyWeightBold } from '../styles/typography'
@@ -17,6 +18,11 @@ const StyledHero = styled.div`
   width: 100%;
   height: ${pxToEm(182)};
   position: relative;
+`
+
+const StyledFa = styled(FontAwesomeIcon)`
+  color: ${colors.pink};
+  font-size: ${pxToEm(20)};
 `
 
 const StyledDescription = styled.p`
@@ -44,19 +50,13 @@ const StyledWasNow = styled.small`
   font-size: ${pxToEm(11)};
 `
 
-const StyledWishlist = styled.small`
-  color: ${colors.navy}; 
-  font-size: ${pxToEm(11)};
-  ${typographyWeightBold};
-`
-
 export {
   StyledCard,
   StyledHero,
   StyledDescription,
+  StyledFa,
   StyledPrice,
   StyledTwoCol,
   StyledGameInfo,
   StyledWasNow,
-  StyledWishlist,
 }

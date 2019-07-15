@@ -2,17 +2,17 @@
 
 exports[`<Game /> it renders 1`] = `
 <article
-  class="sc-dnqmqq lnBboa"
+  class="sc-iwsKbI bCWdSU"
 >
   <div
-    class="sc-iwsKbI bFfjpH"
+    class="sc-gZMcBi cdJWWr"
     style="background-image:url('https://images.unsplash.com/photo-1562819789-fd366076971a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80')"
   />
   <div
     class="sc-bZQynM jTXKpG"
   >
     <div
-      class="sc-jTzLTM dWCvHw"
+      class="sc-jzJRlG fcSxCN"
     >
       <h2
         class="sc-bwzfXH czBpvq"
@@ -20,7 +20,7 @@ exports[`<Game /> it renders 1`] = `
         Title
       </h2>
       <p
-        class="sc-gZMcBi hKQFRJ"
+        class="sc-VigVT bNtpsr"
       >
         No description found.
       </p>
@@ -33,21 +33,21 @@ exports[`<Game /> it renders 1`] = `
     class="sc-bZQynM jTXKpG"
   >
     <div
-      class="sc-VigVT gfYtQJ"
+      class="sc-fjdhpX kHyemL"
     >
       <div
-        class="sc-gqjmRU cOAnCh"
+        class="sc-jTzLTM fXFYMA"
       >
         $0
       </div>
       <small
-        class="typography__align--right sc-fjdhpX dlAVlG"
+        class="typography__align--right sc-cSHVUG hdhyAz"
       >
         Was $0, save $0
       </small>
     </div>
     <div
-      class="sc-VigVT gfYtQJ"
+      class="sc-fjdhpX kHyemL"
     >
       <div>
         <button
@@ -56,14 +56,17 @@ exports[`<Game /> it renders 1`] = `
         >
           Add to cart
         </button>
-        <br />
-        <br />
       </div>
-      <small
-        class="typography__align--right sc-jzJRlG cvvOEF"
+      <div
+        class="typography__align--right"
       >
-        Save to wishlist
-      </small>
+        <button
+          class="sc-dnqmqq ltTAv"
+          type="button"
+        >
+          Save to wishlist
+        </button>
+      </div>
     </div>
   </div>
 </article>

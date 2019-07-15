@@ -13,7 +13,8 @@
       "sale": true,
       "inCart": false,
       "units": 1,
-      "showRemove": false
+      "showRemove": false,
+      "wishlist": false
     },
     {
       "id": 1,
@@ -28,7 +29,8 @@
       "sale": true,
       "inCart": false,
       "units": 1,
-      "showRemove": false
+      "showRemove": false,
+      "wishlist": false
     },
     {
       "id": 2,
@@ -43,7 +45,8 @@
       "sale": true,
       "inCart": false,
       "units": 1,
-      "showRemove": false
+      "showRemove": false,
+      "wishlist": false
     }
   ]
 }

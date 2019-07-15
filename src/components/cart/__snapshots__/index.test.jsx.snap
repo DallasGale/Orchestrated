@@ -1,120 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
-<div
-  class="sc-EHOje jGEDmf"
->
-  <div
-    class="sc-bdVaJa dqmyKm"
-  >
-    <h3
-      class="sc-bxivhb XQmtH"
-    >
-      Your Cart
-    </h3>
-  </div>
-  <div
-    class="sc-bZQynM edqsDC"
-  >
-    <div>
-      <div
-        class="utils__padding-l--20"
-      >
-        Cyberpunk 2077
-      </div>
-    </div>
-    <small
-      class="typography__align--right"
-    >
-      Amount
-    </small>
-    <small
-      class="typography__align--center sc-gzVnrw jAwSlX"
-    >
-      1
-    </small>
-    <div
-      class="typography__align--right"
-    >
-      <div
-        class="utils__padding-r--20"
-      >
-        $80
-      </div>
-    </div>
-  </div>
-  <div
-    class="sc-bZQynM edqsDC"
-  >
-    <div>
-      <div
-        class="utils__padding-l--20"
-      >
-        Star Wars Jedi: Fallen Order
-      </div>
-    </div>
-    <small
-      class="typography__align--right"
-    >
-      Amount
-    </small>
-    <small
-      class="typography__align--center sc-gzVnrw jAwSlX"
-    >
-      1
-    </small>
-    <div
-      class="typography__align--right"
-    >
-      <div
-        class="utils__padding-r--20"
-      >
-        $70
-      </div>
-    </div>
-  </div>
-  <div
-    class="sc-bZQynM edqsDC"
-  >
-    <div>
-      <div
-        class="utils__padding-l--20"
-      >
-        The Last of Us Part II
-      </div>
-    </div>
-    <small
-      class="typography__align--right"
-    >
-      Amount
-    </small>
-    <small
-      class="typography__align--center sc-gzVnrw jAwSlX"
-    >
-      1
-    </small>
-    <div
-      class="typography__align--right"
-    >
-      <div
-        class="utils__padding-r--20"
-      >
-        $91
-      </div>
-    </div>
-  </div>
-  <div
-    class="sc-bdVaJa dqmyKm"
-  >
-    <h4
-      class="typography__align--right sc-ifAKCX hkxIZy"
-    >
-      TOTAL: $undefined
-    </h4>
-  </div>
-</div>
-`;
-
 exports[`<Cart /> it renders 1`] = `
 <div
   class="sc-EHOje jGEDmf"
@@ -129,7 +14,7 @@ exports[`<Cart /> it renders 1`] = `
     </h3>
   </div>
   <div
-    class="sc-bZQynM edqsDC"
+    class="sc-bZQynM bSyUDJ"
   >
     <div>
       <div
@@ -159,7 +44,7 @@ exports[`<Cart /> it renders 1`] = `
     </div>
   </div>
   <div
-    class="sc-bZQynM edqsDC"
+    class="sc-bZQynM bSyUDJ"
   >
     <div>
       <div
@@ -189,7 +74,7 @@ exports[`<Cart /> it renders 1`] = `
     </div>
   </div>
   <div
-    class="sc-bZQynM edqsDC"
+    class="sc-bZQynM bSyUDJ"
   >
     <div>
       <div

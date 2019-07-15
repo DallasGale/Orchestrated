@@ -19,7 +19,7 @@ const Header = (props) => {
         <div className="typography__align--right">
           <div className="header__cart">
             <StyledFa icon={faShoppingCart} />
-            {countExists && (<StyledCount>{cart}</StyledCount>)}
+            {countExists ? (<StyledCount>{cart}</StyledCount>) : null}
           </div>
         </div>
       </StyledGrid>

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Layout from '../styled/layout'
 import { TypographyHeading3, TypographyHeading4 } from '../styles/typography'
 import { StyledCart, StyledLineItem, StyledUnits } from './styled'
@@ -39,6 +40,15 @@ const Cart = (props) => {
       </Layout>
     </StyledCart>
   )
+}
+
+Cart.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.any).isRequired,
+  totalCost: PropTypes.number,
+}
+
+Cart.defaultProps = {
+  totalCost: 0,
 }
 
 export default Cart

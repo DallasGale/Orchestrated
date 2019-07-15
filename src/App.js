@@ -8,12 +8,13 @@ import Cart from './components/cart'
 
 import data from './components/data.json'
 
-import { reducer } from './components/utils/helpers'
+import { calculateSaving, reducer } from './components/utils/helpers'
 
-import { StyledGrid } from './styled'
+import { StyledGrid, StyledEmptyCart } from './styled'
 import './app.scss'
 
 const headerTitle = 'Games Cart'
+const emptyCartMessage = 'Nothing in your cart'
 
 class App extends React.Component {
   state = {
@@ -64,25 +65,42 @@ class App extends React.Component {
     }
   }
 
-
   handleRemoveFromCart = (game) => {
-    const { cart } = this.state
+    const { cart, games } = this.state
     const exisitingGameIndex = this.handleFindIndex(cart, game)
 
     if (exisitingGameIndex >= 0) {
       const cartGames = cart.slice()
+      const gamesList = games.slice()
       const exisitingGame = cartGames[exisitingGameIndex]
+
       const updatedGameUnits = {
         ...exisitingGame,
         units: exisitingGame.units - game.units,
         price: exisitingGame.price - game.price,
       }
+
       if (updatedGameUnits.units >= 0) {
         cartGames[exisitingGameIndex] = updatedGameUnits
         this.setState({
           cart: cartGames,
         })
       }
+
+      // To hide the 'Remove from cart' button
+      if (exisitingGame.units === 1) {
+        const updatedShowRemoveGame = {
+          ...exisitingGame,
+          showRemove: false,
+        }
+        if (updatedShowRemoveGame.units >= 0) {
+          gamesList[exisitingGameIndex] = updatedShowRemoveGame
+          this.setState({
+            games: gamesList,
+          })
+        }
+      }
+      //
     } else {
       this.setState({
         cart: [...cart, game],
@@ -90,9 +108,22 @@ class App extends React.Component {
     }
   }
 
-  calculateSaving = (was, now) => {
-    const saving = was - now
-    return saving
+  handleAddToWishlist = (game) => {
+    const { games } = this.state
+    const exisitingGamesListIndex = this.handleFindIndex(games, game)
+    if (exisitingGamesListIndex >= 0) {
+      const listOfGames = games.slice()
+      const exisitingGamesList = listOfGames[exisitingGamesListIndex]
+      const updatedShowRemoveGame = {
+        ...exisitingGamesList,
+        wishlist: true,
+      }
+      listOfGames[exisitingGamesListIndex] = updatedShowRemoveGame
+
+      this.setState({
+        games: listOfGames,
+      })
+    }
   }
 
   render() {
@@ -103,7 +134,7 @@ class App extends React.Component {
       <div className="App">
         <Header
           title={headerTitle}
-          countExists={cart.length > 0}
+          countExists={cart.length > 0 && totalUnits.reduce(reducer)}
           cart={cart.length > 0 && totalUnits.reduce(reducer)}
         />
         <Page>
@@ -122,6 +153,7 @@ class App extends React.Component {
                     price,
                     units,
                     showRemove,
+                    wishlist,
                   } = game
                   return (
                     <Game
@@ -134,11 +166,13 @@ class App extends React.Component {
                       key={id}
                       price={price}
                       removeOnClick={() => this.handleRemoveFromCart(game)}
-                      save={this.calculateSaving(was, now)}
+                      save={calculateSaving(was, now)}
                       sale={sale}
                       title={title}
                       units={units}
                       was={was}
+                      wishlist={wishlist}
+                      wishlistOnClick={() => this.handleAddToWishlist(game)}
                     />
                   )
                 })
@@ -147,9 +181,15 @@ class App extends React.Component {
           </section>
 
           <section>
-            {cart.length > 0 && (
+            {(cart.length > 0 && totalUnits.reduce(reducer)) ? (
               <Cart cart={cart} totalCost={totalCost.reduce(reducer)} />
-            )}
+            ) : (
+                <div>
+                  <StyledEmptyCart>
+                    {emptyCartMessage}
+                  </StyledEmptyCart>
+                </div>
+              )}
           </section>
         </Page>
       </div>

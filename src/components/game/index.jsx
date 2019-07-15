@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
 import { TypographyHeading2 } from '../styles/typography'
 
 import AddToCart from '../ui_elements/add_to_cart'
@@ -9,18 +11,18 @@ import OnSaleBanner from '../ui_elements/on_sale_banner'
 import Layout from '../styled/layout'
 import Divider from '../ui_elements/divider'
 
+import WishlistButton from '../ui_elements/wishlist_button'
+
 import {
   StyledCard,
   StyledDescription,
+  StyledFa,
   StyledGameInfo,
   StyledHero,
   StyledPrice,
   StyledTwoCol,
   StyledWasNow,
-  StyledWishlist,
 } from './styled'
-
-const wishlistLabel = 'Save to wishlist'
 
 const Game = (props) => {
   const {
@@ -34,6 +36,7 @@ const Game = (props) => {
     save,
     title,
     was,
+    wishlist,
   } = props
   return (
     <StyledCard>
@@ -74,11 +77,9 @@ const Game = (props) => {
             />
           </div>
 
-          <StyledWishlist
-            className="typography__align--right"
-          >
-            {wishlistLabel}
-          </StyledWishlist>
+          <div className="typography__align--right">
+            {!wishlist ? <WishlistButton {...props} /> : <StyledFa icon={faHeart} />}
+          </div>
         </StyledTwoCol>
         {isAdded && (
           <RemoveFromCart removeOnClick={() => removeOnClick({
@@ -108,6 +109,7 @@ Game.propTypes = {
   save: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   was: PropTypes.number.isRequired,
+  wishlist: PropTypes.bool.isRequired,
 }
 
 Game.defaultProps = {
