@@ -5,33 +5,45 @@
       "img": "",
       "title": "Cyberpunk 2077",
       "description": "A futuristic first person shooter cross ARPG set in the dystopian metropolis of Night City.",
-      "price": {
+      "cost": {
         "now": 80,
         "was": 99
       },
-      "sale": true
+      "price": 80,
+      "sale": true,
+      "inCart": false,
+      "units": 1,
+      "showRemove": false
     },
     {
       "id": 1,
       "img": "",
       "title": "Star Wars Jedi: Fallen Order",
       "description": "A third person ARPG set in the Star Wars universe where you play as a young Jedi.",
-      "price": {
+      "cost": {
         "now": 70,
         "was": 99
       },
-      "sale": true
+      "price": 70,
+      "sale": true,
+      "inCart": false,
+      "units": 1,
+      "showRemove": false
     },
     {
       "id": 2,
       "img": "",
       "title": "The Last of Us Part II",
       "description": "A story based action survival game based in a post apocolyptic workd.",
-      "price": {
+      "cost": {
         "now": 91,
         "was": 105
       },
-      "sale": true
+      "price": 91,
+      "sale": true,
+      "inCart": false,
+      "units": 1,
+      "showRemove": false
     }
   ]
 }

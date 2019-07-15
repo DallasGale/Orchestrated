@@ -1,5 +1,8 @@
 .typography {
   &__align {
+    &--center {
+      text-align: center;
+    }
     &--right {
       text-align: right;
     }

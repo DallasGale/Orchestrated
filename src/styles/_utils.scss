@@ -1,0 +1,12 @@
+.utils {
+  &__padding-l {
+    &--20 {
+      padding-left: 20px;
+    }
+  }
+  &__padding-r {
+    &--20 {
+      padding-right: 20px;
+    }
+  }
+}

@@ -16,7 +16,7 @@ const StyledAddToCart = styled.button`
   padding: ${pxToEm(6)} ${pxToEm(20)} ${pxToEm(8)} ;
   width: auto;
   &:hover {
-    background: ${colors.white};
+    background: ${colors.lightBlue};
     color: ${colors.navy};
   }
   ${simpleHover};
@@ -24,9 +24,9 @@ const StyledAddToCart = styled.button`
 `
 
 const AddToCart = (props) => {
-  const { addToCartClick } = props
+  const { addOnClick } = props
   const label = 'Add to cart'
-  return <StyledAddToCart type="button" onClick={addToCartClick}>{label}</StyledAddToCart>
+  return <StyledAddToCart type="button" onClick={addOnClick}>{label}</StyledAddToCart>
 }
 
 export default AddToCart

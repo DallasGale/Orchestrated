@@ -1,16 +1,21 @@
+/* eslint-disable no-else-return */
+/* eslint-disable no-class-assign */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable react/jsx-filename-extension */
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-
-import './app.scss'
 
 import Header from './components/ui_elements/header'
 import Page from './components/styled/page'
 import Game from './components/game'
+import Cart from './components/cart'
 
-import data from './components/games/data.json'
+import data from './components/data.json'
 
 import pxToEm from './components/utils/px_to_em'
+import { reducer } from './components/utils/helpers'
+
+import './app.scss'
 
 const StyledGrid = styled.div`
   display: grid;
@@ -20,106 +25,137 @@ const StyledGrid = styled.div`
   max-width: ${pxToEm(1060)};
 `
 
-// Cart styles
-const StyledCart = styled.div`
-  margin: 0 auto;
-  max-width: ${pxToEm(1060)};
-`
-
-const StyledLineItem = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 100%;
-`
-
-const cartItems = []
-// let cartCount = 0
-
-const App = () => {
-  // const [cartItemCount, setCartItemCount] = useState(0)
-  // const { cartCountState } = props
-  const { games } = data
-  const [cart, setCart] = useState(cartItems)
-  const [cartCount, setCartCount] = useState(0)
-
-  const handleAddToCart = (game) => {
-    const {
-      id,
-      title,
-      description,
-      price,
-    } = game
-    const quantity = 1
-    const addedGame = {
-      quantity,
-      id,
-      title,
-      description,
-      price,
-    }
-    setCart([...cart, addedGame])
-    setCartCount(cartCount + quantity)
+class App extends React.Component {
+  state = {
+    games: data.games,
+    cart: [],
+    newGame: {},
   }
 
-  return (
-    <div className="App">
-      <Header title="Games Cart" cart={cartCount} />
-      <Page>
-        <section>
-          <StyledGrid>
-            {
-              games.map((game) => {
-                const {
-                  id,
-                  description,
-                  sale,
-                  price: { now, was },
-                  title,
-                } = game
 
-                const save = was - now
-                return (
-                  <>
-                    <Game
-                      addToCartClick={() => handleAddToCart(game)}
-                      description={description}
-                      key={id}
-                      sale={sale}
-                      price={now}
-                      save={save}
-                      title={title}
-                      was={was}
-                    />
-                  </>
-                )
-              })
+  handleAddToCart = (game) => {
+    const { cart, games } = this.state
+    const exisitingGameIndex = cart.findIndex(item => item.id === game.id)
+    if (exisitingGameIndex >= 0) {
+      // Create a clone of the existing cart array
+      const cartGames = cart.slice()
+      const exisitingGame = cartGames[exisitingGameIndex]
+      const updatedUnitsGame = {
+        ...exisitingGame,
+        units: exisitingGame.units + game.units,
+        price: exisitingGame.price + game.price,
+      }
+      // Overight exisiting game with updated game state
+      cartGames[exisitingGameIndex] = updatedUnitsGame
+      this.setState({
+        cart: cartGames,
+      })
+    } else {
+      this.setState({
+        cart: [...cart, game],
+      })
+    }
+
+    // To trigger 'Remove from cart' button
+    const exisitingGamesListIndex = games.findIndex(item => item.id === game.id)
+    if (exisitingGamesListIndex >= 0) {
+      const listOfGames = games.slice()
+      const exisitingGamesList = listOfGames[exisitingGamesListIndex]
+      const updatedShowRemoveGame = {
+        ...exisitingGamesList,
+        showRemove: true,
+      }
+      listOfGames[exisitingGamesListIndex] = updatedShowRemoveGame
+      this.setState({
+        games: listOfGames,
+      })
+    }
+  }
+
+
+  handleRemoveFromCart = (game) => {
+    const { cart } = this.state
+    const exisitingGameIndex = cart.findIndex(item => item.id === game.id)
+
+    if (exisitingGameIndex >= 0) {
+      const cartGames = cart.slice()
+      const exisitingGame = cartGames[exisitingGameIndex]
+      const updatedUnitsGame = {
+        ...exisitingGame,
+        units: exisitingGame.units - game.units,
+        price: exisitingGame.price - game.price,
+      }
+      if (updatedUnitsGame.units >= 0) {
+        cartGames[exisitingGameIndex] = updatedUnitsGame
+        this.setState({
+          cart: cartGames,
+        })
+      }
+    } else {
+      this.setState({
+        cart: [...cart, game],
+      })
+    }
+  }
+
+  render() {
+    const { cart, games } = this.state
+    const totalUnits = cart.map(item => item.units)
+    const totalCost = cart.map(item => item.price)
+    return (
+      <div className="App">
+        <Header title="Games Cart" countExists={cart.length > 0} cart={cart.length > 0 ? totalUnits.reduce(reducer) : null} />
+        <Page>
+          <section>
+            <StyledGrid>
+              {
+                games.map((game) => {
+                  const {
+                    id,
+                    description,
+                    cost: { now, was },
+                    inCart,
+                    sale,
+                    title,
+                    price,
+                    units,
+                    showRemove,
+                  } = game
+                  const save = was - now
+                  return (
+                    <>
+                      <Game
+                        id={title}
+                        addOnClick={() => this.handleAddToCart(game)}
+                        description={description}
+                        key={id}
+                        sale={sale}
+                        price={price}
+                        removeOnClick={() => this.handleRemoveFromCart(game)}
+                        save={save}
+                        title={title}
+                        was={was}
+                        addedToCart={inCart}
+                        isAdded={showRemove}
+                        units={units}
+                      />
+                    </>
+                  )
+                })
+              }
+            </StyledGrid>
+          </section>
+
+          <section>
+            {cart.length > 0 && (
+              <Cart cart={cart} totalCost={totalCost.reduce(reducer)} />
+            )
             }
-          </StyledGrid>
-        </section>
-
-        <section>
-          <StyledCart>
-            <h3>Your Cart:</h3>
-            {cart.map((item) => {
-              const { now } = item.price
-
-              // Update cart counter
-              // cartCount += item.quantity
-              return (
-                <StyledLineItem key={item.title}>
-                  <div>{item.title}</div>
-                  <div>Remove from cart</div>
-                  <div>{`Amount: ${item.quantity}`}</div>
-                  <div>{`$${now}`}</div>
-                </StyledLineItem>
-              )
-            })
-            }
-          </StyledCart>
-        </section>
-      </Page>
-    </div>
-  )
+          </section>
+        </Page>
+      </div>
+    )
+  }
 }
 
 export default App
