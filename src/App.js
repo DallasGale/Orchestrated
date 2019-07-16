@@ -8,7 +8,7 @@ import Cart from './components/cart'
 
 import data from './components/data.json'
 
-import { calculateSaving, reducer } from './components/utils/helpers'
+import { calculateSaving, findIndexOfArray, reducer } from './components/utils/helpers'
 
 import { StyledGrid, StyledEmptyCart } from './styled'
 import './app.scss'
@@ -22,14 +22,9 @@ class App extends React.Component {
     cart: [],
   }
 
-  handleFindIndex = (array, input) => {
-    const index = array.findIndex(item => item.id === input.id)
-    return index
-  }
-
   handleAddToCart = (game) => {
     const { cart, games } = this.state
-    const exisitingGameIndex = this.handleFindIndex(cart, game)
+    const exisitingGameIndex = findIndexOfArray(cart, game)
 
     if (exisitingGameIndex >= 0) {
       const cartGames = cart.slice()
@@ -50,7 +45,7 @@ class App extends React.Component {
     }
 
     // To trigger 'Remove from cart' button
-    const exisitingGamesListIndex = this.handleFindIndex(games, game)
+    const exisitingGamesListIndex = findIndexOfArray(games, game)
     if (exisitingGamesListIndex >= 0) {
       const listOfGames = games.slice()
       const exisitingGamesList = listOfGames[exisitingGamesListIndex]
@@ -67,7 +62,7 @@ class App extends React.Component {
 
   handleRemoveFromCart = (game) => {
     const { cart, games } = this.state
-    const exisitingGameIndex = this.handleFindIndex(cart, game)
+    const exisitingGameIndex = findIndexOfArray(cart, game)
 
     if (exisitingGameIndex >= 0) {
       const cartGames = cart.slice()
@@ -138,7 +133,7 @@ class App extends React.Component {
           cart={cart.length > 0 && totalUnits.reduce(reducer)}
         />
         <Page>
-          <section>
+          <section className="spacings__padding-top--60">
             <StyledGrid>
               {
                 games.map((game) => {
@@ -181,15 +176,9 @@ class App extends React.Component {
           </section>
 
           <section>
-            {(cart.length > 0 && totalUnits.reduce(reducer)) ? (
-              <Cart cart={cart} totalCost={totalCost.reduce(reducer)} />
-            ) : (
-                <div>
-                  <StyledEmptyCart>
-                    {emptyCartMessage}
-                  </StyledEmptyCart>
-                </div>
-              )}
+            {(cart.length > 0 && totalUnits.reduce(reducer))
+              ? <Cart cart={cart} totalCost={totalCost.reduce(reducer)} />
+              : <StyledEmptyCart>{emptyCartMessage}</StyledEmptyCart>}
           </section>
         </Page>
       </div>

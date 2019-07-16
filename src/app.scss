@@ -1,3 +1,10 @@
+$base_size: 16;
+
+@function em($target, $context: $base_size) {
+  @return ($target / $context) * 1em;
+}
+
 @import './styles/typography';
 @import './styles/header';
 @import './styles/utils';
+@import './styles/spacings';
