@@ -77,9 +77,9 @@ const Game = (props) => {
             />
           </div>
 
-          <div className="typography__align--right">
+          {/* <div className="typography__align--right">
             {!wishlist ? <WishlistButton {...props} /> : <StyledFa icon={faHeart} />}
-          </div>
+          </div> */}
         </StyledTwoCol>
         {isAdded && (
           <RemoveFromCart removeOnClick={() => removeOnClick({

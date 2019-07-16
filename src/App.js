@@ -83,7 +83,7 @@ class App extends React.Component {
       }
 
       // To hide the 'Remove from cart' button
-      if (exisitingGame.units === 1) {
+      if (exisitingGame.units === 0) {
         const updatedShowRemoveGame = {
           ...exisitingGame,
           showRemove: false,
