@@ -10,6 +10,8 @@ const props = {
   save: 0,
   title: 'Title',
   was: 0,
+  wishlist: false,
+  wishlistOnClick: () => { },
 }
 
 describe('<Game />', () => {

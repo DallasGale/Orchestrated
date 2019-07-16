@@ -22,9 +22,15 @@ class App extends React.Component {
     cart: [],
   }
 
+  handleFindIndex = (array, input) => {
+    const index = array.findIndex(item => item.id === input.id)
+    return index
+  }
+
+
   handleAddToCart = (game) => {
     const { cart, games } = this.state
-    const exisitingGameIndex = findIndexOfArray(cart, game)
+    const exisitingGameIndex = this.handleFindIndex(cart, game)
 
     if (exisitingGameIndex >= 0) {
       const cartGames = cart.slice()
@@ -43,9 +49,10 @@ class App extends React.Component {
         cart: [...cart, game],
       })
     }
-
+    // const index = array.findIndex(item => item.id === input.id)
+    // return index
     // To trigger 'Remove from cart' button
-    const exisitingGamesListIndex = findIndexOfArray(games, game)
+    const exisitingGamesListIndex = this.handleFindIndex(games, game)
     if (exisitingGamesListIndex >= 0) {
       const listOfGames = games.slice()
       const exisitingGamesList = listOfGames[exisitingGamesListIndex]
@@ -62,12 +69,13 @@ class App extends React.Component {
 
   handleRemoveFromCart = (game) => {
     const { cart, games } = this.state
-    const exisitingGameIndex = findIndexOfArray(cart, game)
+    const exisitingGameIndex = this.handleFindIndex(cart, game)
 
     if (exisitingGameIndex >= 0) {
       const cartGames = cart.slice()
-      const gamesList = games.slice()
+      const listOfGames = games.slice()
       const exisitingGame = cartGames[exisitingGameIndex]
+      const exisitingList = listOfGames[exisitingGameIndex]
 
       const updatedGameUnits = {
         ...exisitingGame,
@@ -83,15 +91,15 @@ class App extends React.Component {
       }
 
       // To hide the 'Remove from cart' button
-      if (exisitingGame.units === 0) {
+      if (exisitingGame.units === 1) {
         const updatedShowRemoveGame = {
-          ...exisitingGame,
+          ...exisitingList,
           showRemove: false,
         }
         if (updatedShowRemoveGame.units >= 0) {
-          gamesList[exisitingGameIndex] = updatedShowRemoveGame
+          listOfGames[exisitingGameIndex] = updatedShowRemoveGame
           this.setState({
-            games: gamesList,
+            games: listOfGames,
           })
         }
       }
@@ -105,7 +113,7 @@ class App extends React.Component {
 
   handleAddToWishlist = (game) => {
     const { games } = this.state
-    const exisitingGamesListIndex = findIndexOfArray(games, game)
+    const exisitingGamesListIndex = this.handleFindIndex(games, game)
     if (exisitingGamesListIndex >= 0) {
       const listOfGames = games.slice()
       const exisitingGamesList = listOfGames[exisitingGamesListIndex]
