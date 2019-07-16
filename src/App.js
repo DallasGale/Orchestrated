@@ -105,7 +105,7 @@ class App extends React.Component {
 
   handleAddToWishlist = (game) => {
     const { games } = this.state
-    const exisitingGamesListIndex = this.handleFindIndex(games, game)
+    const exisitingGamesListIndex = findIndexOfArray(games, game)
     if (exisitingGamesListIndex >= 0) {
       const listOfGames = games.slice()
       const exisitingGamesList = listOfGames[exisitingGamesListIndex]
